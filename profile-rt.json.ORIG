@@ -1,0 +1,14 @@
+{
+    "initial_alphabet_opts": ["katsavounidis", "xiaoxiao", "random_from_samples", "random"],
+    "initial_alphabet_opts_available": ["katsavounidis", "xiaoxiao", "random_from_samples", "random"],
+    "distortion_measure_opts": ["mse"],
+    "num_of_levels_opts": [2, 4, 8, 16, 32, 64, 128, 256, 512],
+    "num_of_levels_opts_available": [2, 4, 8, 16, 32, 64, 128, 256, 512],
+    "phase_shift_resolution_opts": [1, 2, 3, 4, 5],
+    "phase_shift_resolution_opts_available": [1, 2, 3, 4, 5],
+    "num_of_trials": 1,
+    "channel_samples_files": ["/home/snow/analog-beamforming-v2i/S000/s000-training_set_8x8_a.npy"],
+    "max_num_of_interactions": 1000,
+    "test_channel_samples_files": ["/home/snow/analog-beamforming-v2i/S000/s000-test_set_8x8_a.npy"],
+    "results_directory": "/home/snow/analog-beamforming-v2i/results"
+}

@@ -1,0 +1,307 @@
+<map version="1.1.0">
+<!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
+<node CREATED="1637679211938" ID="ID_554118196" MODIFIED="1645144161311" TEXT=":q">
+<node COLOR="#8b46f7" CREATED="1638568221779" FOLDED="true" ID="ID_1838155060" MODIFIED="1638568823409" POSITION="left" TEXT="arquivo">
+<node CREATED="1637679599687" ID="ID_1037265159" MODIFIED="1637679604513" TEXT="treinamento">
+<node CREATED="1637679604901" ID="ID_1895939303" MODIFIED="1637679609105" TEXT="entrada">
+<node CREATED="1637679609397" ID="ID_1899560215" MODIFIED="1637682559436" TEXT="um conjunto de amostras de treinamento canal H do RT no dominio angular, cujo quadrado  da norma &#xe9; Nr x Nt"/>
+<node CREATED="1637680916913" ID="ID_532203408" MODIFIED="1637680934414" TEXT="cardinalidade do codebook: k"/>
+<node CREATED="1637681201138" ID="ID_15622297" MODIFIED="1637681214908" TEXT="ditor&#xe7;&#xe3;o m&#xe9;dia m&#xed;nima"/>
+<node CREATED="1637681988321" ID="ID_1610301100" MODIFIED="1637681997645" TEXT="numero m&#xe1;ximo de itera&#xe7;&#xf5;es"/>
+</node>
+<node CREATED="1637679639236" ID="ID_1499015508" MODIFIED="1637679662738" TEXT="inicializa&#xe7;&#xe3;o">
+<node CREATED="1637679663892" ID="ID_685655662" MODIFIED="1637680950318" TEXT="aleatoriamente, seleciona um conjunto de k amostras do conjunto de canais de entrada"/>
+<node CREATED="1637679706292" ID="ID_854646044" MODIFIED="1637681064237" TEXT="para cada uma das k amostras, realiza SVD, identifica o melhor vetor de transmiss&#xe3;o de beanforming (aquele correspondente ao maior valor singular)"/>
+<node CREATED="1637679875572" ID="ID_427202719" MODIFIED="1637680992574" TEXT="com base nesses vetores, &#xe9; criado o codebook de transmiss&#xe3;o"/>
+</node>
+<node CREATED="1637679943748" ID="ID_1383391593" MODIFIED="1637679949216" TEXT="execu&#xe7;&#xe3;o">
+<node CREATED="1637682002033" ID="ID_1779826415" MODIFIED="1637682023810" TEXT="para cada itera&#xe7;&#xe3;o">
+<node CREATED="1637680324404" ID="ID_1070396447" MODIFIED="1637680331792" TEXT="fase de agrupamento">
+<node CREATED="1637679950548" ID="ID_1773070675" MODIFIED="1637680078786" TEXT="para cada amostra">
+<node CREATED="1637680079717" ID="ID_1658463453" MODIFIED="1637681094669" TEXT="realiza o SVD e identifica o melhor vetor de transmiss&#xe3;o"/>
+<node CREATED="1637680083204" ID="ID_1039823868" MODIFIED="1637680417760" TEXT="dado o melhor vetor de transmiss&#xe3;o, para cada um dos k vetores existentes no codebook de transmiss&#xe3;o, agrupa &#xe0;quela codeword com o menor quadrado do erro"/>
+</node>
+<node CREATED="1637680430020" ID="ID_957196239" MODIFIED="1637681131373" TEXT="depois de apresentadas todas as amostrras, tem-se k subconjuntos de vetores de transmiss&#xe3;o"/>
+<node CREATED="1637680757138" ID="ID_299939604" MODIFIED="1637681156510" TEXT="calcula a distor&#xe7;&#xe3;o m&#xe9;dia do codebook de transmiss&#xe3;o para com as amostras agrupadas"/>
+<node COLOR="#0033ff" CREATED="1637681219074" ID="ID_857671156" MODIFIED="1637712736336" TEXT="caso distor&#xe7;&#xe3;o m&#xe9;dia seja menor do que distor&#xe7;&#xe3;o m&#xe9;dia m&#xed;nima, encerra"/>
+</node>
+<node CREATED="1637680334467" ID="ID_1632026747" MODIFIED="1637681174061" TEXT="fase de estimativa de um novo codebook de transmiss&#xe3;o">
+<node CREATED="1637680592388" ID="ID_341518178" MODIFIED="1637680649104" TEXT="para cada k subconjunto de vetores de tranbsmiss&#xe3;o, calcula uma nova codeword com base na m&#xe9;dia dos vetores agrupados"/>
+</node>
+</node>
+<node CREATED="1637682068241" ID="ID_1208320021" MODIFIED="1637682317789" TEXT="ao final de todas as itera&#xe7;&#xf5;es ou atingido o limiar de distor&#xe7;&#xe3;o">
+<node CREATED="1637682318847" ID="ID_62198780" MODIFIED="1637682349741" TEXT="quantiza o codebook final de acordo com a resolu&#xe7;&#xe3;o dos deslocadores de fase"/>
+<node COLOR="#0033ff" CREATED="1637682350672" ID="ID_1297278121" MODIFIED="1637712728665" TEXT="retorna o codebook final quantizado e encerra"/>
+</node>
+</node>
+</node>
+<node CREATED="1637682151633" ID="ID_683174803" MODIFIED="1637682157133" TEXT="teste">
+<node CREATED="1637682158017" ID="ID_1615400906" MODIFIED="1637682163388" TEXT="entrada">
+<node CREATED="1637679609397" ID="ID_633355779" MODIFIED="1637682583227" TEXT="um conjunto de amostras de testes de canal H do RT no dominio angular , cujo quadrado  da norma &#xe9; Nr x Nt"/>
+<node CREATED="1637682202465" ID="ID_1935534082" MODIFIED="1637682221549" TEXT="o codebook de transmiss&#xe3;o obtido durante o treinamento"/>
+</node>
+<node CREATED="1637682231024" ID="ID_1082205617" MODIFIED="1637682234461" TEXT="execu&#xe7;&#xe3;o">
+<node CREATED="1637682757280" ID="ID_1734479898" MODIFIED="1637683119930" TEXT="para cada uma das amostras de canal H realiza o sweeping e seleciona a codeword com maior ganho "/>
+<node CREATED="1637683606910" ID="ID_726427773" MODIFIED="1637683639945" TEXT="para cada uma das amostras, realiza o SVD e calcula o ganho do melhor eigenvalue"/>
+<node CREATED="1637684367228" ID="ID_120484276" MODIFIED="1637684369112" TEXT="plot do gr&#xe1;fico do eigenvalue e do ganho efetivo devido ao uso da cw em fun&#xe7;&#xe3;o das amostras"/>
+</node>
+<node CREATED="1637684379964" ID="ID_389765331" MODIFIED="1637684454679" TEXT="o ganho maximo de beaforming &#xe9; Nr Nt, tal que o somatorio dos eigenvalues deve ser igual a Nr Nt"/>
+</node>
+</node>
+<node CREATED="1640246972826" ID="ID_580097160" MODIFIED="1640269371940" POSITION="left" TEXT="TODO">
+<node CREATED="1640246977624" ID="ID_1379864449" MODIFIED="1640247000613" TEXT="plotar novamente os graficos de capacidade ergotica"/>
+<node CREATED="1640269373882" ID="ID_414363959" MODIFIED="1640269405111" TEXT="analisar se a os diferentes metodos de inicializa&#xe7;&#xe3;o agregam ganho ao codebook final"/>
+<node CREATED="1640269405710" ID="ID_1103255245" MODIFIED="1640269444517" TEXT="pensar em comparar com outros algoritmos  al&#xe9;m do Lloyd e DFT (grassmannian)"/>
+</node>
+<node CREATED="1647006492898" ID="ID_232623125" MODIFIED="1647006500696" POSITION="left" TEXT="Altera&#xe7;&#xf5;es p&#xf3;s-defesa">
+<node CREATED="1647006502609" ID="ID_1753136067" MODIFIED="1647006529466" TEXT="o ganho complexo foi calculado usando a raiz quadrada e considerando a fase"/>
+</node>
+<node CREATED="1638568237569" FOLDED="true" ID="ID_259427552" MODIFIED="1643974112638" POSITION="right" TEXT="modelo de sistema">
+<node CREATED="1638568250688" ID="ID_1512740487" MODIFIED="1640255694111" TEXT="RX com Nr antenas ULA, TX com Nt antenas ULA. Arbitrando Nr = Nt = N"/>
+<node CREATED="1638568315406" ID="ID_144492125" MODIFIED="1638568337238" TEXT="Transmiss&#xe3;o de beamforming"/>
+<node CREATED="1638995558484" ID="ID_1075152785" MODIFIED="1638995565663" TEXT="Beamforming anal&#xf3;gico">
+<node CREATED="1638995566284" ID="ID_1935286535" MODIFIED="1638995584102" TEXT="Restri&#xe7;&#xe3;o de ganho">
+<node CREATED="1638995617833" ID="ID_324365686" MODIFIED="1638995637724" TEXT="mesmo ganho em todos os elementos de antenas"/>
+</node>
+<node CREATED="1638995584593" ID="ID_790326136" MODIFIED="1638995597579" TEXT="restri&#xe7;&#xe3;o de resolu&#xe7;&#xe3;o dos deslocadores de fase">
+<node CREATED="1638995599066" ID="ID_879704196" MODIFIED="1638995602194" TEXT="1 bit"/>
+<node CREATED="1638995602737" ID="ID_1429391408" MODIFIED="1638995605716" TEXT="2 bit"/>
+<node CREATED="1638995606144" ID="ID_1940144437" MODIFIED="1638995608313" TEXT="3 bit"/>
+<node CREATED="1638995608821" ID="ID_926190373" MODIFIED="1638995610879" TEXT="4 bit"/>
+<node CREATED="1638995611352" ID="ID_383697442" MODIFIED="1638995613890" TEXT="5 bit"/>
+</node>
+</node>
+<node CREATED="1638568338040" ID="ID_915243933" MODIFIED="1638995648489" TEXT="RX e TX possuem o mesmo codebook de tamanho k"/>
+<node CREATED="1638568352690" ID="ID_1825471057" MODIFIED="1638995704611" TEXT="O receptor consegue executar MCR (Maximun Combining Receive). Faz sweeping e realimenta &#xed;ndice do vetor de beamforming de transmiss&#xe3;o para o transmissor usando um canal de n bits"/>
+</node>
+<node CREATED="1638569093467" ID="ID_1466746552" MODIFIED="1644269015522" POSITION="right" TEXT="Metodologia">
+<node CREATED="1638569105870" ID="ID_1770316802" MODIFIED="1638569291972" TEXT="Obtem as amostras de canal a partir do RT, usando o modelo do canal geom&#xe9;trico"/>
+<node CREATED="1638996111026" FOLDED="true" ID="ID_30717892" MODIFIED="1644272038615" TEXT="Banco de dados selecionados">
+<node CREATED="1640254834744" FOLDED="true" ID="ID_1390611029" MODIFIED="1644269025092" TEXT="S000">
+<node CREATED="1640254905895" ID="ID_1742754744" MODIFIED="1640254988599" TEXT="Rosslyn&#x9;60GHz&#x9;10 Mobile&#x9;intervalo entre cenas: 100 ms&#x9;intervalo entre episodios: 30 s&#x9;# de episodios: 116&#x9;# de cenas: 50&#x9;# de canais v&#xe1;lidos: 41K">
+<node CREATED="1638957488832" ID="ID_603271451" MODIFIED="1641260268600" TEXT="N = 4">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1638957413030" ID="ID_1785515195" MODIFIED="1641260444093" TEXT="N = 8">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1638957422280" ID="ID_869055265" MODIFIED="1641260449634" TEXT="N = 16">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1638957439655" ID="ID_894164026" MODIFIED="1641260700707" TEXT="N = 32">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1638957444159" ID="ID_702834621" MODIFIED="1641261135280" TEXT="N = 64">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1638957472511" ID="ID_555997139" MODIFIED="1641347446993" TEXT="N = 128">
+<icon BUILTIN="button_cancel"/>
+</node>
+</node>
+</node>
+<node CREATED="1638996129286" ID="ID_146757356" MODIFIED="1640740894093" TEXT="S002">
+<icon BUILTIN="idea"/>
+<node CREATED="1638996141763" ID="ID_1822016955" MODIFIED="1640255086725" TEXT="Rosslyn&#x9;2.8; 60 GHz &#x9;10 Fixed&#x9;intervalo entre cenas: 1 s&#x9;intervalo entre episodios: 3 s&#x9;# de episodios: 1800&#x9;cenas por epis&#xf3;dios: 1&#x9;# canais v&#xe1;lidos: 18K">
+<node CREATED="1638996177606" ID="ID_1707737719" MODIFIED="1641347842176" TEXT="separar amostras por receptor">
+<node CREATED="1638957488832" ID="ID_170708527" MODIFIED="1641418140612" TEXT="N = 4">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1638957413030" ID="ID_1339065041" MODIFIED="1641418145950" TEXT="N = 8">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1638957422280" ID="ID_1110348179" MODIFIED="1641418153115" TEXT="N = 16">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1638957439655" ID="ID_755199694" MODIFIED="1641418158198" TEXT="N = 32">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1638957444159" ID="ID_1297712826" MODIFIED="1641421260581" TEXT="N = 64">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node CREATED="1638957488832" ID="ID_1629332933" MODIFIED="1641347834175" TEXT="N = 4">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1638957413030" ID="ID_328973521" MODIFIED="1641351016283" TEXT="N = 8">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1638957422280" ID="ID_1342351473" MODIFIED="1641351451278" TEXT="N = 16">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1638957439655" ID="ID_1723518018" MODIFIED="1641371966873" TEXT="N = 32">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1638957444159" ID="ID_1715700282" MODIFIED="1641416874772" TEXT="N = 64">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+</node>
+<node CREATED="1640254843761" ID="ID_148751227" MODIFIED="1640254846608" TEXT="S004">
+<node CREATED="1640255203552" ID="ID_1534710181" MODIFIED="1640255203552" TEXT="Rosslyn        60 GHz        10 Mobile        1 s        30 s        5000        1        35K">
+<node CREATED="1638957488832" ID="ID_799635197" MODIFIED="1638957492155" TEXT="N = 4"/>
+<node CREATED="1638957413030" ID="ID_986475601" MODIFIED="1638957421683" TEXT="N = 8"/>
+<node CREATED="1638957422280" ID="ID_799607229" MODIFIED="1638957425601" TEXT="N = 16"/>
+<node CREATED="1638957439655" ID="ID_1715448921" MODIFIED="1638957443624" TEXT="N = 32"/>
+<node CREATED="1638957444159" ID="ID_1533976616" MODIFIED="1638957446950" TEXT="N = 64"/>
+</node>
+</node>
+<node CREATED="1640254848656" ID="ID_570582986" MODIFIED="1641259157648" TEXT="S006">
+<icon BUILTIN="idea"/>
+<node CREATED="1640255183768" ID="ID_146138061" MODIFIED="1640255183768" TEXT="Rosslyn        28; 60 GHz        10 Fixed        1 ms        35 s        200        10        20K">
+<node CREATED="1638996177606" ID="ID_1785061079" MODIFIED="1638996192381" TEXT="separar amostras por receptor">
+<node CREATED="1638957488832" ID="ID_399100442" MODIFIED="1638957492155" TEXT="N = 4"/>
+<node CREATED="1638957413030" ID="ID_134536978" MODIFIED="1638957421683" TEXT="N = 8"/>
+<node CREATED="1638957422280" ID="ID_1142159938" MODIFIED="1638957425601" TEXT="N = 16"/>
+<node CREATED="1638957439655" ID="ID_1305184621" MODIFIED="1638957443624" TEXT="N = 32"/>
+<node CREATED="1638957444159" ID="ID_1071634138" MODIFIED="1638957446950" TEXT="N = 64"/>
+</node>
+<node CREATED="1638957488832" ID="ID_64881031" MODIFIED="1638957492155" TEXT="N = 4"/>
+<node CREATED="1638957413030" ID="ID_1404340400" MODIFIED="1638957421683" TEXT="N = 8"/>
+<node CREATED="1638957422280" ID="ID_1725314086" MODIFIED="1638957425601" TEXT="N = 16"/>
+<node CREATED="1638957439655" ID="ID_1221138876" MODIFIED="1638957443624" TEXT="N = 32"/>
+<node CREATED="1638957444159" ID="ID_1384050788" MODIFIED="1638957446950" TEXT="N = 64"/>
+</node>
+</node>
+<node CREATED="1640254852671" ID="ID_1338208973" MODIFIED="1640254854931" TEXT="S007">
+<node CREATED="1640255137505" ID="ID_188591725" MODIFIED="1640255137505" TEXT="Beijing        2.8; 60 GHz        10 Mobile        1 s        5 s        50        40        15K">
+<node CREATED="1638957488832" ID="ID_314468793" MODIFIED="1638957492155" TEXT="N = 4"/>
+<node CREATED="1638957413030" ID="ID_729584870" MODIFIED="1638957421683" TEXT="N = 8"/>
+<node CREATED="1638957422280" ID="ID_1120992009" MODIFIED="1638957425601" TEXT="N = 16"/>
+<node CREATED="1638957439655" ID="ID_656020033" MODIFIED="1638957443624" TEXT="N = 32"/>
+<node CREATED="1638957444159" ID="ID_990926435" MODIFIED="1638957446950" TEXT="N = 64"/>
+</node>
+</node>
+<node CREATED="1640254855836" ID="ID_1011995993" MODIFIED="1640254858087" TEXT="S008">
+<node CREATED="1640255167540" ID="ID_318947031" MODIFIED="1640255167540" TEXT="Rosslyn        60GHz        10 Mobile        0.1 s        30 s        2086        1        11K">
+<node CREATED="1638957488832" ID="ID_733572716" MODIFIED="1638957492155" TEXT="N = 4"/>
+<node CREATED="1638957413030" ID="ID_301734328" MODIFIED="1638957421683" TEXT="N = 8"/>
+<node CREATED="1638957422280" ID="ID_541918438" MODIFIED="1638957425601" TEXT="N = 16"/>
+<node CREATED="1638957439655" ID="ID_1941777093" MODIFIED="1638957443624" TEXT="N = 32"/>
+<node CREATED="1638957444159" ID="ID_1214819810" MODIFIED="1638957446950" TEXT="N = 64"/>
+</node>
+</node>
+<node CREATED="1640254858677" ID="ID_1261709283" MODIFIED="1640254860769" TEXT="S009">
+<node CREATED="1640255157688" ID="ID_1610578874" MODIFIED="1640255157688" TEXT="Rosslyn        60GHz        10 Mobile        0.1 s        30 s        2000        1        10K">
+<node CREATED="1638957488832" ID="ID_1312536275" MODIFIED="1638957492155" TEXT="N = 4"/>
+<node CREATED="1638957413030" ID="ID_593441924" MODIFIED="1638957421683" TEXT="N = 8"/>
+<node CREATED="1638957422280" ID="ID_814546607" MODIFIED="1638957425601" TEXT="N = 16"/>
+<node CREATED="1638957439655" ID="ID_271575989" MODIFIED="1638957443624" TEXT="N = 32"/>
+<node CREATED="1638957444159" ID="ID_1702252647" MODIFIED="1638957446950" TEXT="N = 64"/>
+</node>
+</node>
+</node>
+<node CREATED="1638569292586" FOLDED="true" ID="ID_1764507149" MODIFIED="1644272039864" TEXT="As amostras s&#xe3;o matrizes complexas do tamanho Nr x Nt, tal que Nr = Nt = N">
+<node CREATED="1638957488832" ID="ID_1201474001" MODIFIED="1638957492155" TEXT="N = 4"/>
+<node CREATED="1638957413030" ID="ID_856864283" MODIFIED="1638957421683" TEXT="N = 8"/>
+<node CREATED="1638957422280" ID="ID_523491901" MODIFIED="1638957425601" TEXT="N = 16"/>
+<node CREATED="1638957439655" ID="ID_1702542736" MODIFIED="1638957443624" TEXT="N = 32"/>
+<node CREATED="1638957444159" ID="ID_477227182" MODIFIED="1638957446950" TEXT="N = 64"/>
+</node>
+<node CREATED="1638569146437" FOLDED="true" ID="ID_902348960" MODIFIED="1644272040990" TEXT="As amostras s&#xe3;o normalizadas  de tal forma que  ||H||^{2} = Nr x Nt">
+<node CREATED="1638995964681" ID="ID_1467260638" MODIFIED="1638996033960" TEXT="\sum{\lambda_i} = Nr x Nt = N^{2}"/>
+</node>
+<node CREATED="1638569226314" FOLDED="true" ID="ID_1097916716" MODIFIED="1644272041942" TEXT="O conjunto de amostras &#xe9; dividido em dois grupos: amostras de treinamento e amostras de teste">
+<node CREATED="1638996041040" ID="ID_317151666" MODIFIED="1638996055819" TEXT="k-fold = 5">
+<node CREATED="1638996089985" ID="ID_187562181" MODIFIED="1638996096712" TEXT="4/5 para treinamento"/>
+<node CREATED="1638996097251" ID="ID_920371787" MODIFIED="1638996102643" TEXT="1/5 para testes"/>
+</node>
+</node>
+<node CREATED="1638569330925" ID="ID_1788617725" MODIFIED="1647382326904" TEXT="Treinamento">
+<node CREATED="1638569350407" ID="ID_246073170" MODIFIED="1638569444854" TEXT="Nas amostras de treinamento, calcula o vetor de beamforing de transmiss&#xe3;o usando svd"/>
+<node CREATED="1638569446928" ID="ID_763809191" MODIFIED="1638957594139" TEXT="aplica o metodo de QV nestes vetores e obtem um codebook de tamanho k = 2^n, para n = 1, 2, 3, 4, 5 bits"/>
+<node CREATED="1638589033807" ID="ID_1609831630" MODIFIED="1638589068236" TEXT="plota o grafico itera&#xe7;&#xf5;es versus distor&#xe7;&#xe3;o">
+<node CREATED="1638957021901" ID="ID_1231452036" MODIFIED="1638957033401" TEXT="distor&#xe7;&#xe3;o &#xe9; o valor esperado do quadrado do erro"/>
+</node>
+<node CREATED="1638569489506" ID="ID_2394060" MODIFIED="1638591292363" TEXT="Adequa o codebook para EGT">
+<node CREATED="1638957236240" ID="ID_1715923151" MODIFIED="1638957265035" TEXT="Codebook I"/>
+</node>
+<node CREATED="1638569510837" ID="ID_1727415453" MODIFIED="1638569528376" TEXT="Adequa o codebook para resolu&#xe7;&#xe3;o de fase (FRAB)">
+<node CREATED="1638957197635" ID="ID_1819235219" MODIFIED="1638957200504" TEXT="1 bit">
+<node CREATED="1638957236240" ID="ID_61457824" MODIFIED="1638957316623" TEXT="Codebook II"/>
+</node>
+<node CREATED="1638957201049" ID="ID_676433227" MODIFIED="1638957204377" TEXT="2 bits">
+<node CREATED="1638957236240" ID="ID_700356715" MODIFIED="1638957319875" TEXT="Codebook III"/>
+</node>
+<node CREATED="1638957204974" ID="ID_973645900" MODIFIED="1638957207924" TEXT="3 bits">
+<node CREATED="1638957236240" ID="ID_580071322" MODIFIED="1638957322842" TEXT="Codebook IV"/>
+</node>
+<node CREATED="1638957208609" ID="ID_244133868" MODIFIED="1638957214539" TEXT="4 bits">
+<node CREATED="1638957236240" ID="ID_510336650" MODIFIED="1638957327374" TEXT="Codebook V"/>
+</node>
+<node CREATED="1638957214937" ID="ID_167876597" MODIFIED="1638957217962" TEXT="5 bits">
+<node CREATED="1638957236240" ID="ID_1119751563" MODIFIED="1638957330802" TEXT="Codebook VI"/>
+</node>
+</node>
+</node>
+<node CREATED="1638569339570" ID="ID_1891391315" MODIFIED="1647382329069" TEXT="Teste">
+<node CREATED="1638569569041" ID="ID_1625433385" MODIFIED="1638569613888" TEXT="Nas amostras de testes, realiza o sweeping no codebook e identifica a codeword de melhor ganho"/>
+<node CREATED="1638569634047" ID="ID_1856550377" MODIFIED="1638569655103" TEXT="plota o grafico ganho x realiza&#xe7;&#xe3;op de canal de testes"/>
+<node CREATED="1638569656348" ID="ID_160771651" MODIFIED="1638589007923" TEXT="plota o grafico snr versus capacidade ergotica"/>
+<node CREATED="1638589008499" ID="ID_115161940" MODIFIED="1638589026064" TEXT="plota o grafico probabilidade de erro versus capacidade"/>
+</node>
+</node>
+<node CREATED="1643974006096" ID="ID_547671394" MODIFIED="1647443352893" POSITION="right" TEXT="scripts e suas fun&#xe7;&#xf5;es">
+<node CREATED="1643974020753" ID="ID_1531973259" MODIFIED="1643974030849" TEXT="test_codebook_fig1.py"/>
+<node CREATED="1643974020753" ID="ID_1189575702" MODIFIED="1643974043174" TEXT="test_codebook_fig2.py"/>
+<node CREATED="1643974020753" ID="ID_1803721237" MODIFIED="1643974048603" TEXT="test_codebook_fig3.py"/>
+<node CREATED="1643974059880" ID="ID_249198643" MODIFIED="1643974068318" TEXT="plot_distortion_by_num_of_codewords_by_n.py"/>
+<node CREATED="1644026043355" ID="ID_1443458172" MODIFIED="1644026048168" TEXT="plot_distortion_by_num_of_codewords.py"/>
+<node CREATED="1644109568968" ID="ID_1595186932" MODIFIED="1644109616710" TEXT="training_training_distortion_by_iteractions.py">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1644109596852" ID="ID_502118531" MODIFIED="1644109621607" TEXT="training_distortion_by_num_of_codewords.py">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1644117855241" ID="ID_641548856" MODIFIED="1644117870275" TEXT="test_codebook_by_initial_alphabet_by_num_levels.py">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1644236881193" ID="ID_1151271279" MODIFIED="1644236893813" TEXT="test_codebook_expected_gain.py">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1644256183207" ID="ID_1003784489" MODIFIED="1644256200035" TEXT="test_codebook_gain_by_num_levels_by_initial_alphabet.py">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1644416662009" ID="ID_1414754193" MODIFIED="1644416673187" TEXT="test_codebook_expected_gain_ci_version_2.py">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1644551915756" ID="ID_1854885416" MODIFIED="1644551929264" TEXT="plot_ci_interval.py">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1644677297634" ID="ID_613026863" MODIFIED="1644677322179" TEXT="plot_errorbaar_with_ci_interval.py">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1647443307066" ID="ID_1004701927" MODIFIED="1647443397591" TEXT="test_codebook_2.py &lt;json codebook&gt; &lt;samples.npy&gt;">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1647483926986" ID="ID_1312578097" MODIFIED="1647483937361" TEXT="test_codebook_gain_by_num_levels_by_initial_alphabet_2.py">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node CREATED="1644405161495" FOLDED="true" ID="ID_367382552" MODIFIED="1647006485585" POSITION="right" TEXT="Datasets com resultados mais promissores para VQ">
+<node CREATED="1644405525936" ID="ID_1040584280" MODIFIED="1644405528072" TEXT="S000">
+<node CREATED="1644405528921" ID="ID_46073106" MODIFIED="1644405531852" TEXT="N=16"/>
+<node CREATED="1644405532920" ID="ID_497176209" MODIFIED="1644405535036" TEXT="N=32"/>
+<node CREATED="1644405535520" ID="ID_982618746" MODIFIED="1644405538161" TEXT="N=64"/>
+</node>
+<node CREATED="1644405542841" ID="ID_409214885" MODIFIED="1644405545074" TEXT="S002">
+<node CREATED="1644405548248" ID="ID_296436498" MODIFIED="1644405550627" TEXT="N=4"/>
+<node CREATED="1644405570785" ID="ID_651384776" MODIFIED="1644405574093" TEXT="N=8"/>
+<node CREATED="1644405622337" ID="ID_191050429" MODIFIED="1644405625325" TEXT="N=16"/>
+<node CREATED="1644405655096" ID="ID_441985194" MODIFIED="1644405657554" TEXT="N=32"/>
+<node CREATED="1644405705434" ID="ID_365022247" MODIFIED="1644405708260" TEXT="N=64"/>
+</node>
+<node CREATED="1644405786075" ID="ID_665128586" MODIFIED="1644405789004" TEXT="S004">
+<node CREATED="1644405790619" ID="ID_1273912083" MODIFIED="1644405794807" TEXT="N=16"/>
+<node CREATED="1644405838188" ID="ID_1914532105" MODIFIED="1644405840797" TEXT="N=32"/>
+</node>
+<node CREATED="1644405891604" ID="ID_395124786" MODIFIED="1644405893492" TEXT="S006">
+<node CREATED="1644405894968" ID="ID_515103481" MODIFIED="1644405898541" TEXT="N=4"/>
+<node CREATED="1644405923981" ID="ID_499249101" MODIFIED="1644405926857" TEXT="N=8"/>
+<node CREATED="1644406051804" ID="ID_1602998304" MODIFIED="1644406054704" TEXT="N=64"/>
+</node>
+<node CREATED="1644406134238" ID="ID_1946350241" MODIFIED="1644406136452" TEXT="S007">
+<node CREATED="1644406136902" ID="ID_1217294566" MODIFIED="1644406140623" TEXT="N=64"/>
+</node>
+</node>
+</node>
+</map>
