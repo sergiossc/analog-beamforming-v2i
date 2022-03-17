@@ -12,6 +12,8 @@ from matplotlib.ticker import MaxNLocator
 
 if __name__ == "__main__":
 
+    plt.rcParams['text.usetex'] = True
+
     #dataset_name_set = ['s000', 's002', 's004', 's006', 's007', 's008', 's009']
     #dataset_name_set = ['s002', 's004', 's006', 's007', 's008', 's009']
     dataset_name_set = ['s002']
@@ -39,7 +41,7 @@ if __name__ == "__main__":
             bf_gain_egt = {}
             bf_gain_dft_dict = {}
             fig, ax = plt.subplots(figsize=(20, 10))
-            num_of_trials = 10
+            num_of_trials = 50
     
             for num_levels in num_levels_set:
                 bf_gain[num_levels] = {}
@@ -67,7 +69,8 @@ if __name__ == "__main__":
                     codebooks_from_results_json_dict[user_filter_id] = ''
                 #    min_mean_distortion_dict[filter_id] = None
             
-                result_pathfiles_dict = get_all_result_json_pathfiles()
+                #result_pathfiles_dict = get_all_result_json_pathfiles()
+                result_pathfiles_dict = get_all_result_json_pathfiles(rootdir="results/s002")
             
                 # Now I have to deal with each JSON result data file
                 for k, pathfile in result_pathfiles_dict.items():
@@ -101,7 +104,7 @@ if __name__ == "__main__":
                 print (np.shape(channels))
                 n_samples, n_rx, n_tx = np.shape(channels)
                 #num_of_trials = 50
-                np.random.seed(5678)
+                #np.random.seed(5678)
                 ch_id_list = np.random.choice(len(channels), num_of_trials, replace=False)
         
                 #bf_gain_opt = {}
@@ -141,8 +144,8 @@ if __name__ == "__main__":
                     u, s, vh = svd(ch)    # singular values 
                     f = np.matrix(vh[0,:]).T
                     w = np.matrix(u[:,0]).T
-                    #print (f'f.shape: {np.shape(f)}')
-                    #print (f'w.shape: {np.shape(w)}')
+                    print (f'------> f.norm: {norm(f)}')
+                    print (f'------> w.norm: {norm(w)}')
         
                     #gain_opt = norm(w.conj().T * (ch * f.conj().T)) ** 2
                     gain_opt = norm(w.conj().T * (ch * f.conj())) ** 2
@@ -151,6 +154,7 @@ if __name__ == "__main__":
                     f_egt = 1/(np.sqrt(num_tx)) * np.exp(1j * np.angle(f))
                     gain_opt_egt = norm(w.conj().T * (ch * f_egt.conj())) ** 2
                     bf_gain_opt_egt.append(gain_opt_egt)
+                    print (f'------> f_egt.norm : {norm(f_egt)}')
     
                     gain_dft, cw_id_tx_dft = beamsweeping2(ch, cb_dft)
                     bf_gain_dft.append(gain_dft)
@@ -214,9 +218,9 @@ if __name__ == "__main__":
             for l, v1 in bf_gain.items():
                 for initial_alphabet, bf_gain_values in v1.items():
                     pass
-                    print (l)
-                    print (initial_alphabet)
-                    print (bf_gain_values)
+                    #print (l)
+                    #print (initial_alphabet)
+                    #print (bf_gain_values)
                     #print (np.array(df[df_col]))
                     if initial_alphabet == 'opt':
                         pass
@@ -224,8 +228,8 @@ if __name__ == "__main__":
                         pass
                         a = np.matrix(bf_gain_values)
                         a_egt = np.matrix(bf_gain_egt[l][initial_alphabet])
-                        print (np.shape(a))
-                        print (np.shape(a_egt))
+                        #print (np.shape(a))
+                        #print (np.shape(a_egt))
 
                         if data_stack is None:
                             data_stack = a
@@ -240,37 +244,37 @@ if __name__ == "__main__":
                         print ('*******************')
             #            ax.plot(np.arange(num_of_trials), np.array(bf_gain_values), color=color_dict[initial_alphabet], label=f'{initial_alphabet_set_label_pt_dict[initial_alphabet]}, L={l}', marker=marker_dict[l])
             #            ax.plot(np.arange(num_of_trials), np.array(bf_gain_egt[l][initial_alphabet]), linestyle='dotted', color=color_dict[initial_alphabet], label=f'{initial_alphabet_set_label_pt_dict[initial_alphabet]}(EGT), L={l}', marker=marker_dict[l])
-            print ('BEGIN --- xxxxxxxxxxxxxxxxxxxxxxx')
+            #print ('BEGIN --- xxxxxxxxxxxxxxxxxxxxxxx')
             #print (np.shape(data_stack))
             data_stack_mean = np.mean(data_stack, axis=0)
             data_stack_mean_n = np.array(data_stack_mean).reshape(num_of_trials)
-            print (data_stack_mean_n)
-            print (np.shape(data_stack_mean_n))
+            #print (data_stack_mean_n)
+            #print (np.shape(data_stack_mean_n))
             #ax.plot(np.arange(num_of_trials), data_stack_mean.T, label='mean est')
             data_stack_std = np.std(data_stack, axis=0)
             data_stack_std_n = np.array(data_stack_std).reshape(num_of_trials)
-            print (data_stack_std_n)
-            print (np.shape(data_stack_std_n))
+            #print (data_stack_std_n)
+            #print (np.shape(data_stack_std_n))
             x = np.arange(num_of_trials)
-            print (x)
-            ax.errorbar(x, data_stack_mean_n, yerr=data_stack_std_n, label='Codebook estimado', marker='o')
-            print ('END --- xxxxxxxxxxxxxxxxxxxxxxx')
+            #print (x)
+            ax.errorbar(x, data_stack_mean_n, yerr=data_stack_std_n, capsize=5, label='Codebook estimado', marker='o')
+            #print ('END --- xxxxxxxxxxxxxxxxxxxxxxx')
         
-            print ('BEGIN --- xxxxxxxxxxxxxxxxxxxxxxx')
+            #print ('BEGIN --- xxxxxxxxxxxxxxxxxxxxxxx')
             #print (np.shape(data_stack))
             data_stack_mean_egt = np.mean(data_stack_egt, axis=0)
             data_stack_mean_egt_n = np.array(data_stack_mean_egt).reshape(num_of_trials)
-            print (data_stack_mean_egt_n)
-            print (np.shape(data_stack_mean_egt_n))
+            #print (data_stack_mean_egt_n)
+            #print (np.shape(data_stack_mean_egt_n))
             #ax.plot(np.arange(num_of_trials), data_stack_mean.T, label='mean est')
             data_stack_std_egt = np.std(data_stack_egt, axis=0)
             data_stack_std_egt_n = np.array(data_stack_std_egt).reshape(num_of_trials)
-            print (data_stack_std_egt_n)
-            print (np.shape(data_stack_std_egt_n))
+            #print (data_stack_std_egt_n)
+            #print (np.shape(data_stack_std_egt_n))
             x = np.arange(num_of_trials)
-            print (x)
-            ax.errorbar(x, data_stack_mean_egt_n, yerr=data_stack_std_egt_n, label='Codebook estimado (EGT)', marker='s')
-            print ('END --- xxxxxxxxxxxxxxxxxxxxxxx')
+            #print (x)
+            ax.errorbar(x, data_stack_mean_egt_n, yerr=data_stack_std_egt_n, capsize=5, label='Codebook estimado (EGT)', marker='o', linestyle='dotted')
+            #print ('END --- xxxxxxxxxxxxxxxxxxxxxxx')
  
 
 
@@ -281,8 +285,8 @@ if __name__ == "__main__":
             #ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05), fontsize=11)
             #ax.set_ylim(0,16)
             #plt.xticks(np.arange(num_of_trials), np.array(num_of_trials))
-            plt.xlabel(r'Realizações de canal (H)', fontsize=11)
-            plt.ylabel(r'Ganho de BF ($(G)$)', fontsize=11)
+            plt.xlabel(r'Realizações de canal (\textbf{H})', fontsize=11)
+            plt.ylabel(r'Ganho de BF (G)', fontsize=11)
             plt.grid(True)
             image_filename = f'test_bf_gain_{dataset_name}-vs-channel-realizations-n{n}.png'
             print (image_filename)
