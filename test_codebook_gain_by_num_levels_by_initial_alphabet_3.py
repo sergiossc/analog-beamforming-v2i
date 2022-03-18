@@ -216,10 +216,8 @@ if __name__ == "__main__":
         
         
             ax[0].plot(np.arange(num_of_trials), np.array(bf_gain[4]['opt']), color=color_dict['opt'], label=f"{initial_alphabet_set_label_pt_dict['opt']}", marker=11)
-            ax[0].plot(np.arange(num_of_trials), np.ones(num_of_trials)*np.mean(np.array(bf_gain[4]['opt'])), color=color_dict['opt'], label=f"{initial_alphabet_set_label_pt_dict['opt']}")
 
             ax[1].plot(np.arange(num_of_trials), np.array(bf_gain_egt[4]['egt']), color=color_dict['opt'], linestyle='dotted', label=f"{initial_alphabet_set_label_pt_dict['opt']}(EGT)", marker=11)
-            ax[1].plot(np.arange(num_of_trials), np.ones(num_of_trials)*np.mean(np.array(bf_gain_egt[4]['egt'])), color=color_dict['opt'], linestyle='dotted', label=f"{initial_alphabet_set_label_pt_dict['opt']}(EGT)")
 
             data_stack = None
             data_stack_egt = None
@@ -282,7 +280,9 @@ if __name__ == "__main__":
             x = np.arange(num_of_trials)
             #print (x)
             ax[0].errorbar(x, data_stack_mean_n, yerr=data_stack_std_n, capsize=5, label='Codebook estimado', marker='o', color='green')
-            ax[0].plot(x, np.ones(num_of_trials)*np.mean(data_stack_mean_n), label='Média codebook estimado', color='red')
+            ax[0].plot(x, np.ones(num_of_trials)*np.mean(data_stack_mean_n), label='Média codebook estimado', color='green')
+
+            ax[0].plot(np.arange(num_of_trials), np.ones(num_of_trials)*np.mean(np.array(bf_gain[4]['opt'])), color=color_dict['opt'], label=f"{initial_alphabet_set_label_pt_dict['opt']}")
             #print ('END --- xxxxxxxxxxxxxxxxxxxxxxx')
         
             #print ('BEGIN --- xxxxxxxxxxxxxxxxxxxxxxx')
@@ -299,7 +299,9 @@ if __name__ == "__main__":
             x = np.arange(num_of_trials)
             #print (x)
             ax[1].errorbar(x, data_stack_mean_egt_n, yerr=data_stack_std_egt_n, capsize=5, label='Codebook estimado (EGT)', marker='o', linestyle='dotted', color='green')
-            ax[1].plot(x, np.ones(num_of_trials)*np.mean(data_stack_mean_egt_n), label='Média codebook estimado (EGT)', linestyle='dotted', color='red')
+            ax[1].plot(x, np.ones(num_of_trials)*np.mean(data_stack_mean_egt_n), label='Média codebook estimado (EGT)', linestyle='dotted', color='green')
+
+            ax[1].plot(np.arange(num_of_trials), np.ones(num_of_trials)*np.mean(np.array(bf_gain_egt[4]['egt'])), color=color_dict['opt'], linestyle='dotted', label=f"{initial_alphabet_set_label_pt_dict['opt']}(EGT)")
             #print ('END --- xxxxxxxxxxxxxxxxxxxxxxx')
 
             ##ax[0].plot(np.arange(num_of_trials), np.array(bf_gain_dft_dict[4]['dft']), color=color_dict['dft'], label='DFT', marker='+')
