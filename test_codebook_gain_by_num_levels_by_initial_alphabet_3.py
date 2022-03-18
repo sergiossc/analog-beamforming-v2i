@@ -216,8 +216,7 @@ if __name__ == "__main__":
         
         
             ax[0].plot(np.arange(num_of_trials), np.array(bf_gain[4]['opt']), color=color_dict['opt'], label=f"{initial_alphabet_set_label_pt_dict['opt']}", marker=11)
-
-            ax[1].plot(np.arange(num_of_trials), np.array(bf_gain_egt[4]['egt']), color=color_dict['opt'], linestyle='dotted', label=f"{initial_alphabet_set_label_pt_dict['opt']}(EGT)", marker=11)
+            ax[1].plot(np.arange(num_of_trials), np.array(bf_gain_egt[4]['egt']), color=color_dict['opt'], linestyle='dotted', label=f"{initial_alphabet_set_label_pt_dict['opt']} (EGT)", marker=11)
 
             data_stack = None
             data_stack_egt = None
@@ -279,10 +278,10 @@ if __name__ == "__main__":
             #print (np.shape(data_stack_std_n))
             x = np.arange(num_of_trials)
             #print (x)
-            ax[0].errorbar(x, data_stack_mean_n, yerr=data_stack_std_n, capsize=5, label='Codebook estimado', marker='o', color='green')
-            ax[0].plot(x, np.ones(num_of_trials)*np.mean(data_stack_mean_n), label='Média codebook estimado', color='green')
+            ax[0].errorbar(x, data_stack_mean_n, yerr=data_stack_std_n, capsize=5, label=r'$\mu_{G}$ e $\sigma_{G}$ dos codebooks estimados para cada realização \textbf{H}', marker='o', color='green')
+            ax[0].plot(x, np.ones(num_of_trials)*np.mean(data_stack_mean_n), label=r'$\mu_{G}$ dos codebooks estimados para o conjunto de 50 realizações de \textbf{H}', color='green')
 
-            ax[0].plot(np.arange(num_of_trials), np.ones(num_of_trials)*np.mean(np.array(bf_gain[4]['opt'])), color=color_dict['opt'], label=f"{initial_alphabet_set_label_pt_dict['opt']}")
+            ax[0].plot(np.arange(num_of_trials), np.ones(num_of_trials)*np.mean(np.array(bf_gain[4]['opt'])), color=color_dict['opt'], label=r'$\mu_{G}$'+ f" do {initial_alphabet_set_label_pt_dict['opt']}" + r' para 50 realizações de \textbf{H}')
             #print ('END --- xxxxxxxxxxxxxxxxxxxxxxx')
         
             #print ('BEGIN --- xxxxxxxxxxxxxxxxxxxxxxx')
@@ -298,17 +297,17 @@ if __name__ == "__main__":
             #print (np.shape(data_stack_std_egt_n))
             x = np.arange(num_of_trials)
             #print (x)
-            ax[1].errorbar(x, data_stack_mean_egt_n, yerr=data_stack_std_egt_n, capsize=5, label='Codebook estimado (EGT)', marker='o', linestyle='dotted', color='green')
-            ax[1].plot(x, np.ones(num_of_trials)*np.mean(data_stack_mean_egt_n), label='Média codebook estimado (EGT)', linestyle='dotted', color='green')
+            ax[1].errorbar(x, data_stack_mean_egt_n, yerr=data_stack_std_egt_n, capsize=5, label=r'$\mu_{G}$ e $\sigma_{G}$ dos codebooks estimados~(EGT) para cada realização \textbf{H}', marker='o', linestyle='dotted', color='green')
+            ax[1].plot(x, np.ones(num_of_trials)*np.mean(data_stack_mean_egt_n), label=r'$\mu_{G}$ com EGT dos codebooks estimados para 50 realizações de \textbf{H}', linestyle='dotted', color='green')
 
-            ax[1].plot(np.arange(num_of_trials), np.ones(num_of_trials)*np.mean(np.array(bf_gain_egt[4]['egt'])), color=color_dict['opt'], linestyle='dotted', label=f"{initial_alphabet_set_label_pt_dict['opt']}(EGT)")
+            ax[1].plot(np.arange(num_of_trials), np.ones(num_of_trials)*np.mean(np.array(bf_gain_egt[4]['egt'])), color=color_dict['opt'], linestyle='dotted', label=r'$\mu_{G}$'+f" do {initial_alphabet_set_label_pt_dict['opt']}"+r'~(EGT) para 50 realizações de \textbf{H}')
             #print ('END --- xxxxxxxxxxxxxxxxxxxxxxx')
 
             ##ax[0].plot(np.arange(num_of_trials), np.array(bf_gain_dft_dict[4]['dft']), color=color_dict['dft'], label='DFT', marker='+')
             ##ax[1].plot(np.arange(num_of_trials), np.array(bf_gain_dft_dict[4]['dft']), color=color_dict['dft'], label='DFT', marker='+')
         
-            ax[0].legend(loc='best', fontsize=9)
-            ax[1].legend(loc='best', fontsize=9)
+            ax[0].legend(loc='best', fontsize=11)
+            ax[1].legend(loc='best', fontsize=11)
             ax[0].grid(True)
             ax[1].grid(True)
             #ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), fontsize=11, ncol=2)
@@ -322,10 +321,10 @@ if __name__ == "__main__":
             #plt.xticks(np.arange(num_of_trials), np.arange(num_of_trials))
             plt.setp(ax, xticks=np.arange(num_of_trials) , xticklabels=np.arange(num_of_trials))
 
-            fig.text(0.5, 0.05, r'Realizações de canal (\textbf{H})', ha='center')
-            fig.text(0.1, 0.5, r'Ganho de BF (G)', va='center', rotation='vertical')
+            fig.text(0.5, 0.05, r'Realizações de canal (\textbf{H})', ha='center', fontsize=11)
+            fig.text(0.1, 0.5, r'Ganho de BF (G)', va='center', rotation='vertical', fontsize=11)
 
             image_filename = f'test_bf_gain_{dataset_name}-vs-channel-realizations-n{n}_new.png'
             print (image_filename)
-            #plt.savefig(image_filename, bbox_inches='tight')
-            plt.show()
+            plt.savefig(image_filename, bbox_inches='tight')
+            #plt.show()
