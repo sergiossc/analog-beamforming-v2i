@@ -79,7 +79,9 @@ if __name__ == "__main__":
 
     
 
-    num_of_trials = 1000
+    #num_of_trials = 1000
+    num_of_trials = n_samples,
+    
     np.random.seed(5678)
     ch_id_list = np.random.choice(len(channels), num_of_trials, replace=False)
         
@@ -93,7 +95,7 @@ if __name__ == "__main__":
 
 
 
-    snr_db = np.arange(-20, 10, 2)
+    snr_db = np.arange(-20, 20, 2)
     snr = 10 ** (snr_db/10)
 
     mean_capacity_bf_gain_opt = []
@@ -154,10 +156,10 @@ if __name__ == "__main__":
     plt.ylabel('Capacidade (bps/Hz)')
     plt.grid()
     plt.legend()
-    plt.show()
-    #fig_filename = f'capacity-s002-n{n_tx}-phase-resolution.png'
-    #plt.savefig(fig_filename, bbox_inches='tight')
-    #print (fig_filename)
+    #plt.show()
+    fig_filename = f'capacity-s002-n{n_tx}-{initial_alphabet_opt}-phase-resolution.png'
+    print (fig_filename)
+    plt.savefig(fig_filename, bbox_inches='tight')
 ##    
 ##            gain_est, cw_id_tx = beamsweeping2(ch, cb_dict)
 ##            #bf_vector_est.append(cb_dict[cw_id_tx])

@@ -14,7 +14,7 @@ if __name__ == "__main__":
 
     
     #n_set = [4, 8, 16, 32, 64]
-    n_set = [8]
+    n_set = [4]
     #setup_dict = {4:'I', 8:'II', 16:'III', 32:'IV', 64:'V'}
 
     initial_alphabet_set = ['katsavounidis', 'xiaoxiao', 'random_from_samples', 'random']

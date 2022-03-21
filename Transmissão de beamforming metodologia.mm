@@ -255,7 +255,7 @@
 <node CREATED="1644117855241" ID="ID_641548856" MODIFIED="1644117870275" TEXT="test_codebook_by_initial_alphabet_by_num_levels.py">
 <icon BUILTIN="button_ok"/>
 </node>
-<node CREATED="1644236881193" ID="ID_1151271279" MODIFIED="1644236893813" TEXT="test_codebook_expected_gain.py">
+<node CREATED="1644236881193" ID="ID_1151271279" MODIFIED="1647598323126" TEXT="test_codebook_expected_gain_2.py">
 <icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1644256183207" ID="ID_1003784489" MODIFIED="1644256200035" TEXT="test_codebook_gain_by_num_levels_by_initial_alphabet.py">
@@ -267,14 +267,17 @@
 <node CREATED="1644551915756" ID="ID_1854885416" MODIFIED="1644551929264" TEXT="plot_ci_interval.py">
 <icon BUILTIN="button_ok"/>
 </node>
-<node CREATED="1644677297634" ID="ID_613026863" MODIFIED="1644677322179" TEXT="plot_errorbaar_with_ci_interval.py">
-<icon BUILTIN="button_ok"/>
-</node>
 <node CREATED="1647443307066" ID="ID_1004701927" MODIFIED="1647443397591" TEXT="test_codebook_2.py &lt;json codebook&gt; &lt;samples.npy&gt;">
 <icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1647483926986" ID="ID_1312578097" MODIFIED="1647483937361" TEXT="test_codebook_gain_by_num_levels_by_initial_alphabet_2.py">
 <icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1647638769496" ID="ID_142384932" MODIFIED="1647638792765" TEXT="run_all_test.py">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1644677297634" ID="ID_613026863" MODIFIED="1644677322179" TEXT="plot_errorbaar_with_ci_interval.py">
+<icon BUILTIN="button_ok"/>
+</node>
 </node>
 </node>
 <node CREATED="1644405161495" FOLDED="true" ID="ID_367382552" MODIFIED="1647006485585" POSITION="right" TEXT="Datasets com resultados mais promissores para VQ">

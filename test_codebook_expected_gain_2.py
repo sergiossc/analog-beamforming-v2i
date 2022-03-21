@@ -13,8 +13,8 @@ from matplotlib.ticker import MaxNLocator
 if __name__ == "__main__":
 
     
-    #n_set = [4, 8, 16, 32, 64]
-    n_set = [4]
+    n_set = [4, 8, 16, 32, 64]
+    #n_set = [4]
     #setup_dict = {4:'I', 8:'II', 16:'III', 32:'IV', 64:'V'}
 
     #initial_alphabet_set = ['katsavounidis', 'xiaoxiao', 'random_from_samples', 'random']
@@ -54,7 +54,7 @@ if __name__ == "__main__":
                     codebooks_from_results_json_dict[user_filter_id] = ''
                 #    min_mean_distortion_dict[filter_id] = None
             
-                result_pathfiles_dict = get_all_result_json_pathfiles()
+                result_pathfiles_dict = get_all_result_json_pathfiles(rootdir="results/s002")
             
                 # Now I have to deal with each JSON result data file
                 for k, pathfile in result_pathfiles_dict.items():
@@ -212,7 +212,7 @@ if __name__ == "__main__":
             plt.xlabel('Tamanho do codebook (L)', fontsize=11)
             plt.ylabel(r'Ganho de BF', fontsize=11)
             plt.grid(True)
-            image_filename = f'test-bf-expected-gain-{dataset_name}-n{n}-dft-oversampled.png'
+            image_filename = f'test-bf-expected-gain-{dataset_name}-n{n}-dft-oversampled_new.png'
             print (image_filename)
             plt.savefig(image_filename, bbox_inches='tight')
             #plt.show()

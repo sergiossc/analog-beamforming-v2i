@@ -184,6 +184,6 @@ if __name__ == "__main__":
                     #bf_gain = d['bf_gain_max_list']
             #print (f'# of matched filters on /{rootdir}: {counter}')
             #print (len(matched_results_dict))
-            fig_filename = f'errorbar_plot-{dataset_name}-n{n}.png'
+            fig_filename = f'errorbar_plot-{dataset_name}-n{n}_new.png'
             plot_ci_boxplot(matched_results_dict, fig_filename)
     #else:

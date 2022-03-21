@@ -25,7 +25,7 @@ if __name__ == "__main__":
     dataset_name_set = ['s002']
 
 
-    num_of_trials =  10 #1000 # num of samples from test dataset
+    num_of_trials = 1000 #1000 # num of samples from test dataset
     
     #print (len(user_filter_set))
     # Read all json result files from training
@@ -56,7 +56,7 @@ if __name__ == "__main__":
         for n in n_set:
             print (f'ds_name: {dataset_name}\t-->\tn: {n}')
             #data_test_results['n'] = n
-            test_channels_pathfile = f'/home/snow/analog-beamforming-v2i/{dataset_name}-test_set_{n}x{n}_a.npy'
+            test_channels_pathfile = f'/home/snow/analog-beamforming-v2i/{dataset_name}-test_set_{n}x{n}_normalized.npy'
             #data_test_results['test_channels_pathfile'] = test_channels_pathfile
             #print (f'loading data test channels in {test_channels_pathfile}... ')
             channels = np.load(f'{test_channels_pathfile}')
