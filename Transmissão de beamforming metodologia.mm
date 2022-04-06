@@ -279,6 +279,12 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
+<node CREATED="1648371313975" ID="ID_1450839429" MODIFIED="1648371326729" TEXT="test_channel_egt_frab.py">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1648676546970" ID="ID_489882904" MODIFIED="1648676561470" TEXT="test_channel_egt_frab_capacity.py">
+<icon BUILTIN="button_ok"/>
+</node>
 </node>
 <node CREATED="1644405161495" FOLDED="true" ID="ID_367382552" MODIFIED="1647006485585" POSITION="right" TEXT="Datasets com resultados mais promissores para VQ">
 <node CREATED="1644405525936" ID="ID_1040584280" MODIFIED="1644405528072" TEXT="S000">

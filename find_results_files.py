@@ -26,14 +26,16 @@ if __name__ == '__main__':
     #gridsize = (2, 3)
     #fig = plt.figure(figsize=(8, 12))
     
-    n = int(sys.argv[1])
+    initial_alphabet_opt = str(sys.argv[1])
+    n = int(sys.argv[2])
     #n = 32
 
     rx_array_size = n
     tx_array_size = n
 
     #initial_alphabet_opt = str(sys.argv[3])
-    initial_alphabet_opt = 'xiaoxiao' #str(sys.argv[3])
+    #initial_alphabet_opt = 'xiaoxiao' #str(sys.argv[3])
+    #initial_alphabet_opt = 'random' #str(sys.argv[3])
     #num_of_levels = int(sys.argv[2])
     num_of_levels = n
 

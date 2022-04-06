@@ -17,8 +17,8 @@ if __name__ == "__main__":
     norm_values = []
     eigen_values_v0 = []
     eigen_values_v1 = []
-    #eigen_values_v2 = []
-    #eigen_values_v3 = []
+    eigen_values_v2 = []
+    eigen_values_v3 = []
     bf_gain_values = []
 
     for i in  range(num_of_trials):
@@ -27,11 +27,19 @@ if __name__ == "__main__":
         ch = np.sqrt(num_rx * num_tx) * ch/norm(ch)
 
         u, s, vh = svd(ch)
+
         eigen_v0 = s[0] ** 2
-        eigen_values_v0.append(eigen_v0)
-        eigen_v1 = s[1] ** 2
+        #eigen_v1 = s[1] ** 2
         #eigen_v2 = s[2] ** 2
         #eigen_v3 = s[3] ** 2
+
+        eigen_values_v0.append(eigen_v0)
+        #eigen_values_v1.append(eigen_v1)
+        #eigen_values_v2.append(eigen_v2)
+        #eigen_values_v3.append(eigen_v3)
+        
+        #norm_values.append(np.sum(s ** 2))
+
         vh = np.matrix(vh)
         u = np.matrix(u)
 
@@ -39,26 +47,22 @@ if __name__ == "__main__":
         f = f.conj().T
         w = u[:,0]
 
-        print (f'f.shape: {np.shape(f)}')
-        print (f'w.shape: {np.shape(w)}')
+        #print (f'f.shape: {np.shape(f)}')
+        #print (f'w.shape: {np.shape(w)}')
 
-        f = (1/np.sqrt(num_tx)) * np.exp(1j * np.angle(f))
+        #f = (1/np.sqrt(num_tx)) * np.exp(1j * np.angle(f))
 
         bf_gain = np.abs(w.conj().T * (ch * f)) ** 2
         bf_gain = bf_gain[0,0]
-        print (bf_gain)
+        #print (bf_gain)
         bf_gain_values.append(bf_gain)
 
-        eigen_values_v1.append(eigen_v1)
-        #eigen_values_v2.append(eigen_v2)
-        #eigen_values_v3.append(eigen_v3)
-
-        norm_v = norm(ch)
-        norm_values.append(norm_v)
+        #norm_v = norm(ch)
+        #norm_values.append(norm_v)
         pass
-    #plt.plot(norm_values, label='norm_v')
+    plt.plot(norm_values, label='norm_v')
     plt.plot(eigen_values_v0, label='eigen_v0')
-    plt.plot(eigen_values_v1, label='eigen_v1')
+    #plt.plot(eigen_values_v1, label='eigen_v1')
     #plt.plot(eigen_values_v2, label='eigen_v2')
     #plt.plot(eigen_values_v3, label='eigen_v3')
     plt.plot(bf_gain_values, label='bf gain values', linestyle='--')

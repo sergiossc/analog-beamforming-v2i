@@ -210,7 +210,7 @@ if __name__ == "__main__":
             #ax.set_ylim(0,16)
             plt.xticks(range(len(num_levels_set)), np.array(num_levels_set))
             plt.xlabel('Tamanho do codebook (L)', fontsize=11)
-            plt.ylabel(r'Ganho de BF', fontsize=11)
+            plt.ylabel(r'Ganho médio de Beamforming', fontsize=11)
             plt.grid(True)
             image_filename = f'test-bf-expected-gain-{dataset_name}-n{n}-dft-oversampled_new.png'
             print (image_filename)

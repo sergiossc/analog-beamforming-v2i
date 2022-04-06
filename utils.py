@@ -141,7 +141,7 @@ def get_frab(complex_mat, b):
     # Nq is the number of supported phase shifters
     #f = []
     nq = 2 ** b
-    discrete_phase_values = np.exp(1j * 2 * np.pi * 1/(nq) * np.arange(nq))
+    discrete_phase_values = np.exp(1j * 2 * np.pi * (1/(nq)) * np.arange(nq))
     #print (discrete_phase_values)
     #print (np.rad2deg(np.angle(discrete_phase_values)))
     #print (np.abs(discrete_phase_values))
@@ -165,7 +165,8 @@ def get_frab(complex_mat, b):
             for f_value in discrete_phase_values:
                 pass
                 v1 = f_value - mat_v
-                v_squared_norm = np.abs(v1 * v1.conjugate())  # It is just squared error
+                #v_squared_norm = np.abs(v1 * v1.conjugate())  # It is just squared error
+                v_squared_norm = np.abs(v1) ** 2  # It is just squared error
                 if v_squared_norm < v_min:
                     f_min = f_value
                     v_min = v_squared_norm

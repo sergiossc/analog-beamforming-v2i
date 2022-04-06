@@ -64,7 +64,6 @@ if __name__ == "__main__":
             #cb_dict_frab[phase_resolution_bits][k] = 1/np.sqrt(n_tx) * np.exp(1j * np.angle(get_frab(v, phase_resolution_bits)))
             cb_dict_frab[phase_resolution_bits][k] = get_frab(v, phase_resolution_bits)
             print (norm(cb_dict_frab[phase_resolution_bits][k]))
-            
 
 
     #for k, v in cb_dict.items():
@@ -79,8 +78,8 @@ if __name__ == "__main__":
 
     
 
-    #num_of_trials = 1000
-    num_of_trials = n_samples,
+    num_of_trials = 1000
+    #num_of_trials = n_samples,
     
     np.random.seed(5678)
     ch_id_list = np.random.choice(len(channels), num_of_trials, replace=False)
@@ -95,7 +94,7 @@ if __name__ == "__main__":
 
 
 
-    snr_db = np.arange(-20, 20, 2)
+    snr_db = np.arange(-20, 20, 1)
     snr = 10 ** (snr_db/10)
 
     mean_capacity_bf_gain_opt = []
@@ -156,10 +155,10 @@ if __name__ == "__main__":
     plt.ylabel('Capacidade (bps/Hz)')
     plt.grid()
     plt.legend()
-    #plt.show()
-    fig_filename = f'capacity-s002-n{n_tx}-{initial_alphabet_opt}-phase-resolution.png'
-    print (fig_filename)
-    plt.savefig(fig_filename, bbox_inches='tight')
+    plt.show()
+    #fig_filename = f'capacity-s002-n{n_tx}-{initial_alphabet_opt}-phase-resolution.png'
+    #print (fig_filename)
+    #plt.savefig(fig_filename, bbox_inches='tight')
 ##    
 ##            gain_est, cw_id_tx = beamsweeping2(ch, cb_dict)
 ##            #bf_vector_est.append(cb_dict[cw_id_tx])

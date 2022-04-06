@@ -131,7 +131,7 @@ def plot_ci_boxplot(matched_results_dict, fig_filename):
     #box = ax1.boxplot(x_set, conf_intervals=ci_values_set, notch=True, labels=labels_set)
     plt.xticks(np.arange(len(labels_set)), labels_set)
     plt.xticks(rotation=90)
-    plt.ylabel('Ganho de BF (G)')
+    plt.ylabel('Ganho de Beamforming (G)')
     plt.grid()
     #plt.show()
     print (fig_filename)

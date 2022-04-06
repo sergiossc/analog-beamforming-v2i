@@ -43,8 +43,9 @@ if __name__ == "__main__":
             bf_gain_egt = {}
             bf_gain_dft_dict = {}
             #fig, ax = plt.subplots(1,2, figsize=(10, 10))
-            fig, ax = plt.subplots(1,2, figsize=(20,10), gridspec_kw = {'wspace':0.025, 'hspace':0.15}, sharey=True)
-            num_of_trials = 10
+            fig, ax = plt.subplots(figsize=(20, 10))
+            #fig, ax = plt.subplots(1,2, figsize=(20,10), gridspec_kw = {'wspace':0.025, 'hspace':0.15}, sharey=True)
+            num_of_trials = 50
     
             for num_levels in num_levels_set:
                 bf_gain[num_levels] = {}
@@ -107,8 +108,8 @@ if __name__ == "__main__":
                 print (np.shape(channels))
                 n_samples, n_rx, n_tx = np.shape(channels)
                 #num_of_trials = 50
-                #np.random.seed(5678)
-                np.random.seed(78910)
+                np.random.seed(5678)
+                #np.random.seed(910)
                 ch_id_list = np.random.choice(len(channels), num_of_trials, replace=False)
         
                 #bf_gain_opt = {}
@@ -205,7 +206,7 @@ if __name__ == "__main__":
             #marker_dict = {'katsavounidis': "*", 'random': "h", 'random_from_samples': "p", 'xiaoxiao': 4, 'opt': 5}
             marker_dict = {4: "*", 8: "h", 16: "p", 32: 4, 64:5, 128:6, 256:7, 512:10}
             color_dict = {'dft': 'darkviolet', 'opt': 'black', 'random': 'green', 'random_from_samples': 'red', 'xiaoxiao': 'orange', 'katsavounidis': 'blue' }
-            initial_alphabet_set_label_pt_dict = {'opt': 'BF ideal', 'katsavounidis': 'katsavounidis', 'xiaoxiao':'xiaoxiao', 'random_from_samples':'aleatório(amostras)', 'random':'aleatório'}
+            initial_alphabet_set_label_pt_dict = {'opt': 'Beamforming ideal', 'katsavounidis': 'katsavounidis', 'xiaoxiao':'xiaoxiao', 'random_from_samples':'aleatório(amostras)', 'random':'aleatório'}
             sorted_cols = ['xiaoxiao', 'random_from_samples', 'random']
             sorted_cols_pt = [initial_alphabet_set_label_pt_dict[v] for v in sorted_cols]
         
@@ -215,8 +216,8 @@ if __name__ == "__main__":
             #print (df)
         
         
-            ax[0].plot(np.arange(num_of_trials), np.array(bf_gain[4]['opt']), color=color_dict['opt'], label=f"{initial_alphabet_set_label_pt_dict['opt']}", marker=11)
-            ax[1].plot(np.arange(num_of_trials), np.array(bf_gain_egt[4]['egt']), color=color_dict['opt'], linestyle='dotted', label=f"{initial_alphabet_set_label_pt_dict['opt']} (EGT)", marker=11)
+            ##ax.plot(np.arange(num_of_trials), np.array(bf_gain[4]['opt']), color=color_dict['opt'], label=f"{initial_alphabet_set_label_pt_dict['opt']}", marker=11)
+            ax.plot(np.arange(num_of_trials), np.array(bf_gain_egt[4]['egt']), color=color_dict['opt'], linestyle='dotted', label=f"{initial_alphabet_set_label_pt_dict['opt']} (EGT)", marker=11)
 
             data_stack = None
             data_stack_egt = None
@@ -278,10 +279,10 @@ if __name__ == "__main__":
             #print (np.shape(data_stack_std_n))
             x = np.arange(num_of_trials)
             #print (x)
-            ax[0].errorbar(x, data_stack_mean_n, yerr=data_stack_std_n, capsize=5, label=r'$\mu_{G}$ e $\sigma_{G}$ dos codebooks estimados para cada realização \textbf{H}', marker='o', color='green')
-            ax[0].plot(x, np.ones(num_of_trials)*np.mean(data_stack_mean_n), label=r'$\mu_{G}$ dos codebooks estimados para o conjunto de 50 realizações de \textbf{H}', color='green')
+            ##ax.errorbar(x, data_stack_mean_n, yerr=data_stack_std_n, capsize=5, label=r'$\mu_{G}$ e $\sigma_{G}$ dos codebooks estimados para cada realização \textbf{H}', marker='o', color='green')
+            ##ax.plot(x, np.ones(num_of_trials)*np.mean(data_stack_mean_n), label=r'$\mu_{G}$ dos codebooks estimados para o conjunto de 50 realizações de \textbf{H}', color='green')
 
-            ax[0].plot(np.arange(num_of_trials), np.ones(num_of_trials)*np.mean(np.array(bf_gain[4]['opt'])), color=color_dict['opt'], label=r'$\mu_{G}$'+ f" do {initial_alphabet_set_label_pt_dict['opt']}" + r' para 50 realizações de \textbf{H}')
+            ##ax.plot(np.arange(num_of_trials), np.ones(num_of_trials)*np.mean(np.array(bf_gain[4]['opt'])), color=color_dict['opt'], label=r'$\mu_{G}$'+ f" do {initial_alphabet_set_label_pt_dict['opt']}" + r' para 50 realizações de \textbf{H}')
             #print ('END --- xxxxxxxxxxxxxxxxxxxxxxx')
         
             #print ('BEGIN --- xxxxxxxxxxxxxxxxxxxxxxx')
@@ -297,19 +298,19 @@ if __name__ == "__main__":
             #print (np.shape(data_stack_std_egt_n))
             x = np.arange(num_of_trials)
             #print (x)
-            ax[1].errorbar(x, data_stack_mean_egt_n, yerr=data_stack_std_egt_n, capsize=5, label=r'$\mu_{G}$ e $\sigma_{G}$ dos codebooks estimados~(EGT) para cada realização \textbf{H}', marker='o', linestyle='dotted', color='green')
-            ax[1].plot(x, np.ones(num_of_trials)*np.mean(data_stack_mean_egt_n), label=r'$\mu_{G}$ com EGT dos codebooks estimados para 50 realizações de \textbf{H}', linestyle='dotted', color='green')
+            ax.errorbar(x, data_stack_mean_egt_n, yerr=data_stack_std_egt_n, capsize=5, label=r'$\mu_{G}$ e $\sigma_{G}$ dos codebooks estimados~(EGT) para cada realização \textbf{H}', marker='o', linestyle='dotted', color='red')
+            ##ax.plot(x, np.ones(num_of_trials)*np.mean(data_stack_mean_egt_n), label=r'$\mu_{G}$ com EGT dos codebooks estimados para 50 realizações de \textbf{H}', linestyle='dotted', color='red')
 
-            ax[1].plot(np.arange(num_of_trials), np.ones(num_of_trials)*np.mean(np.array(bf_gain_egt[4]['egt'])), color=color_dict['opt'], linestyle='dotted', label=r'$\mu_{G}$'+f" do {initial_alphabet_set_label_pt_dict['opt']}"+r'~(EGT) para 50 realizações de \textbf{H}')
+            ##ax.plot(np.arange(num_of_trials), np.ones(num_of_trials)*np.mean(np.array(bf_gain_egt[4]['egt'])), color=color_dict['opt'], linestyle='dotted', label=r'$\mu_{G}$'+f" do {initial_alphabet_set_label_pt_dict['opt']}"+r'~(EGT) para 50 realizações de \textbf{H}')
             #print ('END --- xxxxxxxxxxxxxxxxxxxxxxx')
 
             ##ax[0].plot(np.arange(num_of_trials), np.array(bf_gain_dft_dict[4]['dft']), color=color_dict['dft'], label='DFT', marker='+')
             ##ax[1].plot(np.arange(num_of_trials), np.array(bf_gain_dft_dict[4]['dft']), color=color_dict['dft'], label='DFT', marker='+')
         
-            ax[0].legend(loc='best', fontsize=11)
-            ax[1].legend(loc='best', fontsize=11)
-            ax[0].grid(True)
-            ax[1].grid(True)
+            ax.legend(loc='best', fontsize=14)
+            ax.legend(loc='best', fontsize=14)
+            ax.grid(True)
+            ax.grid(True)
             #ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), fontsize=11, ncol=2)
             #ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05), fontsize=11)
             #ax.set_ylim(0,16)
@@ -321,8 +322,8 @@ if __name__ == "__main__":
             #plt.xticks(np.arange(num_of_trials), np.arange(num_of_trials))
             plt.setp(ax, xticks=np.arange(num_of_trials) , xticklabels=np.arange(num_of_trials))
 
-            fig.text(0.5, 0.05, r'Realizações de canal (\textbf{H})', ha='center', fontsize=11)
-            fig.text(0.1, 0.5, r'Ganho de BF (G)', va='center', rotation='vertical', fontsize=11)
+            fig.text(0.5, 0.05, r'Realizações de canal (\textbf{H})', ha='center', fontsize=14)
+            fig.text(0.09, 0.5, r'Ganho de Beamforming (G)', va='center', rotation='vertical', fontsize=14)
 
             image_filename = f'test_bf_gain_{dataset_name}-vs-channel-realizations-n{n}_new.png'
             print (image_filename)
