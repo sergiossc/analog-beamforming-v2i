@@ -52,8 +52,8 @@ if __name__ == "__main__":
     channels = np.load(samples_pathfile) 
     num_samples, n, m = np.shape(channels)
 
-    num_of_trials = 10
-    np.random.seed(5678)
+    num_of_trials = 1000
+    #np.random.seed(5678)
     #np.random.seed(78)
     ch_id_list = np.random.choice(num_samples, num_of_trials, replace=False)
 
@@ -70,12 +70,16 @@ if __name__ == "__main__":
             cb_est_egt_dict[cw_id] = (1/np.sqrt(m)) * np.exp(1j * np.angle(v))
 
 
+    cb_est_egt_dict_b10 = {}
+    cb_est_egt_dict_b8 = {}
     cb_est_egt_dict_b4 = {}
     cb_est_egt_dict_b3 = {}
     cb_est_egt_dict_b2 = {}
     cb_est_egt_dict_b1 = {}
 
     for k, v in cb_est_dict.items():
+        cb_est_egt_dict_b10[k] = get_frab(v, 10)
+        cb_est_egt_dict_b8[k] = get_frab(v, 8)
         cb_est_egt_dict_b4[k] = get_frab(v, 4)
         cb_est_egt_dict_b3[k] = get_frab(v, 3)
         cb_est_egt_dict_b2[k] = get_frab(v, 2)
@@ -85,12 +89,16 @@ if __name__ == "__main__":
     snr = 10 ** (snr_db/10)
 
     capacity_opt_egt_mean = []    
+    capacity_opt_egt_b10_mean = []    
+    capacity_opt_egt_b8_mean = []    
     capacity_opt_egt_b4_mean = []    
     capacity_opt_egt_b3_mean = []    
     capacity_opt_egt_b2_mean = []    
     capacity_opt_egt_b1_mean = []    
 
     capacity_est_egt_mean = []    
+    capacity_est_egt_b10_mean = []    
+    capacity_est_egt_b8_mean = []    
     capacity_est_egt_b4_mean = []    
     capacity_est_egt_b3_mean = []    
     capacity_est_egt_b2_mean = []    
@@ -100,12 +108,16 @@ if __name__ == "__main__":
         pass
         ##print (snr_v)
         capacity_opt_egt = []    
+        capacity_opt_egt_b10 = []    
+        capacity_opt_egt_b8 = []    
         capacity_opt_egt_b4 = []    
         capacity_opt_egt_b3 = []    
         capacity_opt_egt_b2 = []    
         capacity_opt_egt_b1 = []    
 
         capacity_est_egt = []    
+        capacity_est_egt_b10 = []    
+        capacity_est_egt_b8 = []    
         capacity_est_egt_b4 = []    
         capacity_est_egt_b3 = []    
         capacity_est_egt_b2 = []    
@@ -122,7 +134,19 @@ if __name__ == "__main__":
             gain_opt_egt = bf_gain_test(ch, f_opt_egt, w_opt) # opt receiver
             capacity_opt_egt.append(np.log2(1 +  snr_v * gain_opt_egt))
 
+
+            f_opt_egt_b10 = get_frab(f_opt_egt, 10)
+            gain_opt_egt_b10 = bf_gain_test(ch, f_opt_egt_b10, w_opt)
+            capacity_opt_egt_b10.append(np.log2(1 + snr_v *  gain_opt_egt_b10))
+ 
+
+
+            f_opt_egt_b8 = get_frab(f_opt_egt, 8)
+            gain_opt_egt_b8 = bf_gain_test(ch, f_opt_egt_b8, w_opt)
+            capacity_opt_egt_b8.append(np.log2(1 + snr_v *  gain_opt_egt_b8))
+ 
             #gain_opt_egt_b4, cw_id_tx_b4 = beamsweeping2(ch, cb_dict_frab_b4)
+
             f_opt_egt_b4 = get_frab(f_opt_egt, 4)
             gain_opt_egt_b4 = bf_gain_test(ch, f_opt_egt_b4, w_opt)
             capacity_opt_egt_b4.append(np.log2(1 + snr_v *  gain_opt_egt_b4))
@@ -151,6 +175,18 @@ if __name__ == "__main__":
             ##print (f'norm of {norm(f_est_egt)}')
     
             #gain_est_egt_b4, cw_id_tx_b4 = beamsweeping2(ch, cb_dict_frab_b4)
+
+            f_est_egt_b10 = get_frab(f_est_egt, 10)
+            gain_est_egt_b10 = bf_gain_test(ch, f_est_egt_b10, w_opt)
+            capacity_est_egt_b10.append(np.log2(1 + snr_v *  gain_est_egt_b10))
+ 
+
+            f_est_egt_b8 = get_frab(f_est_egt, 8)
+            gain_est_egt_b8 = bf_gain_test(ch, f_est_egt_b8, w_opt)
+            capacity_est_egt_b8.append(np.log2(1 + snr_v *  gain_est_egt_b8))
+ 
+
+
             f_est_egt_b4 = get_frab(f_est_egt, 4)
             gain_est_egt_b4 = bf_gain_test(ch, f_est_egt_b4, w_opt)
             capacity_est_egt_b4.append(np.log2(1 + snr_v *  gain_est_egt_b4))
@@ -168,12 +204,16 @@ if __name__ == "__main__":
             capacity_est_egt_b1.append(np.log2(1 + snr_v *  gain_est_egt_b1))
 #    
         capacity_opt_egt_mean.append(np.mean( capacity_opt_egt ))
+        capacity_opt_egt_b10_mean.append(np.mean( capacity_opt_egt_b10 ))
+        capacity_opt_egt_b8_mean.append(np.mean( capacity_opt_egt_b8 ))
         capacity_opt_egt_b4_mean.append(np.mean( capacity_opt_egt_b4 ))
         capacity_opt_egt_b3_mean.append(np.mean( capacity_opt_egt_b3 ))
         capacity_opt_egt_b2_mean.append(np.mean( capacity_opt_egt_b2 ))
         capacity_opt_egt_b1_mean.append(np.mean( capacity_opt_egt_b1 ))
 
         capacity_est_egt_mean.append(np.mean( capacity_est_egt ))
+        capacity_est_egt_b10_mean.append(np.mean( capacity_est_egt_b10 ))
+        capacity_est_egt_b8_mean.append(np.mean( capacity_est_egt_b8 ))
         capacity_est_egt_b4_mean.append(np.mean( capacity_est_egt_b4 ))
         capacity_est_egt_b3_mean.append(np.mean( capacity_est_egt_b3 ))
         capacity_est_egt_b2_mean.append(np.mean( capacity_est_egt_b2 ))
@@ -185,12 +225,16 @@ if __name__ == "__main__":
     data['snr_db'] = snr_db.tolist()
 
     data['capacity_opt_egt_mean'] = capacity_opt_egt_mean
+    data['capacity_opt_egt_b10_mean'] = capacity_opt_egt_b10_mean
+    data['capacity_opt_egt_b8_mean'] = capacity_opt_egt_b8_mean
     data['capacity_opt_egt_b4_mean'] = capacity_opt_egt_b4_mean
     data['capacity_opt_egt_b3_mean'] = capacity_opt_egt_b3_mean
     data['capacity_opt_egt_b2_mean'] = capacity_opt_egt_b2_mean
     data['capacity_opt_egt_b1_mean'] = capacity_opt_egt_b1_mean
 
     data['capacity_est_egt_mean'] = capacity_est_egt_mean
+    data['capacity_est_egt_b10_mean'] = capacity_est_egt_b10_mean
+    data['capacity_est_egt_b8_mean'] = capacity_est_egt_b8_mean
     data['capacity_est_egt_b4_mean'] = capacity_est_egt_b4_mean
     data['capacity_est_egt_b3_mean'] = capacity_est_egt_b3_mean
     data['capacity_est_egt_b2_mean'] = capacity_est_egt_b2_mean
@@ -205,15 +249,19 @@ if __name__ == "__main__":
 
     fig, ax = plt.subplots(figsize=(6,6))
 
-    ax.plot(snr_db, capacity_opt_egt_mean, label=f'ideal (EGT)')
-    ax.plot(snr_db, capacity_opt_egt_b4_mean, label=f'ideal (EGT) - 4 bits', linestyle='dotted')
-    ax.plot(snr_db, capacity_opt_egt_b3_mean, label=f'ideal (EGT) - 3 bits', linestyle='dashed')
-    ax.plot(snr_db, capacity_opt_egt_b2_mean, label=f'ideal (EGT) - 2 bits', linestyle='dashdot')
-    ax.plot(snr_db, capacity_opt_egt_b1_mean, label=f'ideal (EGT) - 1 bits', linestyle=(0,(1,10)))
+    ##ax.plot(snr_db, capacity_opt_egt_mean, label=f'ideal (EGT)')
+    ##ax.plot(snr_db, capacity_opt_egt_b10_mean, label=f'ideal (EGT) - 10 bits', linestyle='dotted')
+    ##ax.plot(snr_db, capacity_opt_egt_b8_mean, label=f'ideal (EGT) - 8 bits', linestyle='dotted')
+    ##ax.plot(snr_db, capacity_opt_egt_b4_mean, label=f'ideal (EGT) - 4 bits', linestyle='dotted')
+    ##ax.plot(snr_db, capacity_opt_egt_b3_mean, label=f'ideal (EGT) - 3 bits', linestyle='dashed')
+    ##ax.plot(snr_db, capacity_opt_egt_b2_mean, label=f'ideal (EGT) - 2 bits', linestyle='dashdot')
+    ##ax.plot(snr_db, capacity_opt_egt_b1_mean, label=f'ideal (EGT) - 1 bits', linestyle=(0,(1,10)))
  
 
 
     ax.plot(snr_db, capacity_est_egt_mean, label=f'{initial_alphabet_opt} (EGT)')
+    ax.plot(snr_db, capacity_est_egt_b10_mean, label=f'{initial_alphabet_opt} (EGT) - 10 bits', linestyle='--')
+    ax.plot(snr_db, capacity_est_egt_b8_mean, label=f'{initial_alphabet_opt} (EGT) - 8 bits', linestyle='--')
     ax.plot(snr_db, capacity_est_egt_b4_mean, label=f'{initial_alphabet_opt} (EGT) - 4 bits', linestyle='--')
     ax.plot(snr_db, capacity_est_egt_b3_mean, label=f'{initial_alphabet_opt} (EGT) - 3 bits', linestyle='--')
     ax.plot(snr_db, capacity_est_egt_b2_mean, label=f'{initial_alphabet_opt} (EGT) - 2 bits', linestyle='--')
@@ -223,15 +271,19 @@ if __name__ == "__main__":
 
     ax_small = fig.add_axes([0.60, 0.2, 0.2, 0.2])
 
-    ax_small.plot(snr_db, capacity_opt_egt_mean, label=f'ideal (EGT)')
-    ax_small.plot(snr_db, capacity_opt_egt_b4_mean, label=f'ideal (EGT) - 4 bits', linestyle='dotted')
-    ax_small.plot(snr_db, capacity_opt_egt_b3_mean, label=f'ideal (EGT) - 3 bits', linestyle='dashed')
-    ax_small.plot(snr_db, capacity_opt_egt_b2_mean, label=f'ideal (EGT) - 2 bits', linestyle='dashdot')
-    ax_small.plot(snr_db, capacity_opt_egt_b1_mean, label=f'ideal (EGT) - 1 bits', linestyle=(0,(1,10)))
+    ##ax_small.plot(snr_db, capacity_opt_egt_mean, label=f'ideal (EGT)')
+    ##ax_small.plot(snr_db, capacity_opt_egt_b10_mean, label=f'ideal (EGT) - 10 bits', linestyle='dotted')
+    ##ax_small.plot(snr_db, capacity_opt_egt_b8_mean, label=f'ideal (EGT) - 8 bits', linestyle='dotted')
+    ##ax_small.plot(snr_db, capacity_opt_egt_b4_mean, label=f'ideal (EGT) - 4 bits', linestyle='dotted')
+    ##ax_small.plot(snr_db, capacity_opt_egt_b3_mean, label=f'ideal (EGT) - 3 bits', linestyle='dashed')
+    ##ax_small.plot(snr_db, capacity_opt_egt_b2_mean, label=f'ideal (EGT) - 2 bits', linestyle='dashdot')
+    ##ax_small.plot(snr_db, capacity_opt_egt_b1_mean, label=f'ideal (EGT) - 1 bits', linestyle=(0,(1,10)))
  
 
 
     ax_small.plot(snr_db, capacity_est_egt_mean, label=f'{initial_alphabet_opt} (EGT)')
+    ax_small.plot(snr_db, capacity_est_egt_b10_mean, label=f'{initial_alphabet_opt} (EGT) - 10 bits', linestyle='--')
+    ax_small.plot(snr_db, capacity_est_egt_b8_mean, label=f'{initial_alphabet_opt} (EGT) - 8 bits', linestyle='--')
     ax_small.plot(snr_db, capacity_est_egt_b4_mean, label=f'{initial_alphabet_opt} (EGT) - 4 bits', linestyle='--')
     ax_small.plot(snr_db, capacity_est_egt_b3_mean, label=f'{initial_alphabet_opt} (EGT) - 3 bits', linestyle='--')
     ax_small.plot(snr_db, capacity_est_egt_b2_mean, label=f'{initial_alphabet_opt} (EGT) - 2 bits', linestyle='--')
